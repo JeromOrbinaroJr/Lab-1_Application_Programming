@@ -1,6 +1,6 @@
 
 class Customer:
-    def __init__(self, name, email, purchase_history):
+    def __init__(self, name: str, email: str, purchase_history):
         self.name = name
         self.email = email
         self.purchase_history = purchase_history
@@ -8,4 +8,3 @@ class Customer:
     def add_to_purchase_history(self):
 
     def get_purchase_history(self):
-        

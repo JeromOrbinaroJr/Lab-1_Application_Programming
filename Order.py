@@ -1,10 +1,9 @@
 from typing import List
-
 from Book import Book
 from Customer import Customer
 
 class Order:
-    def __init__(self, order_id: str, customer: Customer, total_amount: float, status: str = "Pending"):
+    def __init__(self, order_id: str, customer: Customer, status: str = "Pending"):
         self.order_id = order_id
         self.customer = customer
         self.books: List[Book] = []
@@ -14,7 +13,7 @@ class Order:
     def add_book(self, book: Book, quantity: int = 1):
         if book.quantity >= quantity:
             self.books.extend([book] * quantity)
-            book.update_quantity(book.quantity-quantity)
+            book.update_quantity(book.quantity - quantity)
             self.calculate_total()
         else:
             raise ValueError(f"Not enough copies of '{book.title}' available.")
@@ -27,8 +26,7 @@ class Order:
         if new_status in valid_statuses:
             self.status = new_status
         else:
-            raise ValueError(f"Invalid status '{new_status}'. Valid statuses: {valid_statuses}")
-
+            raise ValueError(f"Invalid status '{new_status}'.")
 
     def __str__(self):
         book_titles = [book.title for book in self.books]

@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46974ee4-c5b2-4a2b-99ee-97745b46e3ad" name="Changes" comment="end of modification Employee">
-      <change beforePath="$PROJECT_DIR$/InventoryJSONHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/InventoryJSONHandler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InventoryXMLHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/InventoryXMLHandler.py" afterDir="false" />
-    </list>
+    <list default="true" id="46974ee4-c5b2-4a2b-99ee-97745b46e3ad" name="Changes" comment="end of modification Inventory" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,7 +79,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730625552993</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="end of modification Inventory">
+      <option name="closed" value="true" />
+      <created>1730625873058</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730625873058</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -90,6 +95,7 @@
     <MESSAGE value="end of modification Book" />
     <MESSAGE value="end of modification Customer" />
     <MESSAGE value="end of modification Employee" />
-    <option name="LAST_COMMIT_MESSAGE" value="end of modification Employee" />
+    <MESSAGE value="end of modification Inventory" />
+    <option name="LAST_COMMIT_MESSAGE" value="end of modification Inventory" />
   </component>
 </project>

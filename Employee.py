@@ -21,5 +21,4 @@ class Employee:
             return 0.0
 
     def __str__(self):
-        return (f"Employee(name='{self.name}', position='{self.position}', "
-                f"salary={self.salary})")
+        return (f"Employee(name='{self.name}', position='{self.position}', salary={self.salary})")

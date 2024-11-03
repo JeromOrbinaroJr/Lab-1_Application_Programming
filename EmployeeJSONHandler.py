@@ -2,6 +2,12 @@ import json
 from typing import Optional
 from Employee import Employee
 
+class EmployeeExistsError(Exception):
+    pass
+
+class EmployeeNotFoundError(Exception):
+    pass
+
 class EmployeeJSONHandler:
     def __init__(self, filepath: str):
         self.filepath = filepath
@@ -19,6 +25,10 @@ class EmployeeJSONHandler:
         except (FileNotFoundError, json.JSONDecodeError):
             data = {"employees": []}
 
+        for existing_employee in data.get("employees", []):
+            if existing_employee["name"] == employee.name:
+                raise EmployeeExistsError(f"Employee '{employee.name}' already exists.")
+
         data["employees"].append(employee_data)
         with open(self.filepath, "w") as file:
             json.dump(data, file, indent=4)
@@ -31,8 +41,8 @@ class EmployeeJSONHandler:
                 if employee_data["name"] == name:
                     return Employee(employee_data["name"], employee_data["position"], employee_data["salary"])
         except (FileNotFoundError, json.JSONDecodeError):
-            print(f"Error reading JSON: file not found or invalid format.")
-            return None
+            print("Error reading JSON: file not found or invalid format.")
+        return None
 
     def update(self, name: str, new_salary: float):
         try:
@@ -44,19 +54,24 @@ class EmployeeJSONHandler:
                     with open(self.filepath, "w") as file:
                         json.dump(data, file, indent=4)
                     return True
+            raise EmployeeNotFoundError(f"Employee '{name}' not found for update.")
         except (FileNotFoundError, json.JSONDecodeError):
-            print(f"Error updating JSON: file not found or invalid format.")
+            print("Error updating JSON: file not found or invalid format.")
             return False
-        return False
 
     def delete(self, name: str):
         try:
             with open(self.filepath, "r") as file:
                 data = json.load(file)
+            original_length = len(data.get("employees", []))
             data["employees"] = [emp for emp in data.get("employees", []) if emp["name"] != name]
+
+            if len(data["employees"]) == original_length:
+                raise EmployeeNotFoundError(f"Employee '{name}' not found for deletion.")
+
             with open(self.filepath, "w") as file:
                 json.dump(data, file, indent=4)
             return True
         except (FileNotFoundError, json.JSONDecodeError):
-            print(f"Error deleting JSON: file not found or invalid format.")
+            print("Error deleting JSON: file not found or invalid format.")
             return False

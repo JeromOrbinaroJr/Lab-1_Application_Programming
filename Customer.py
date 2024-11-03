@@ -29,3 +29,6 @@ class Customer:
         except ValueError as e:
             print(f"Get Purchase History Error: {e}")
             return []
+
+    def __str__(self):
+        return f"Customer(name={self.name}, email={self.email}, purchase_history={self.purchase_history})"

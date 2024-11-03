@@ -1,6 +1,14 @@
 import xml.etree.ElementTree as ET
+from typing import Optional
+
 from ShoppingCart import ShoppingCart
 from Book import Book
+
+class ShoppingCartExistsError(Exception):
+    pass
+
+class ShoppingCartNotFoundError(Exception):
+    pass
 
 class ShoppingCartXMLHandler:
     def __init__(self, filepath: str):
@@ -24,7 +32,7 @@ class ShoppingCartXMLHandler:
         except Exception as e:
             print(f"Error creating XML: {e}")
 
-    def read(self) -> ShoppingCart:
+    def read(self) -> Optional[ShoppingCart]:
         try:
             tree = ET.parse(self.filepath)
             root = tree.getroot()
@@ -43,7 +51,7 @@ class ShoppingCartXMLHandler:
                 cart.add_item(book, quantity)
 
             return cart
-        except Exception as e:
+        except (FileNotFoundError, ET.ParseError) as e:
             print(f"Error reading XML: {e}")
             return None
 

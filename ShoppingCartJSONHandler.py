@@ -1,6 +1,13 @@
 import json
+from typing import Optional
 from ShoppingCart import ShoppingCart
 from Book import Book
+
+class ShoppingCartExistsError(Exception):
+    pass
+
+class ShoppingCartNotFoundError(Exception):
+    pass
 
 class ShoppingCartJSONHandler:
     def __init__(self, filepath: str):
@@ -21,20 +28,28 @@ class ShoppingCartJSONHandler:
         }
 
         try:
+            with open(self.filepath, "r") as file:
+                existing_data = json.load(file)
+                if existing_data:
+                    raise ShoppingCartExistsError("Shopping cart already exists.")
+
             with open(self.filepath, "w") as file:
                 json.dump(cart_data, file, indent=4)
-        except Exception as e:
-            print(f"Error creating JSON: {e}")
+        except (FileNotFoundError, json.JSONDecodeError):
+            with open(self.filepath, "w") as file:
+                json.dump(cart_data, file, indent=4)
+        except ShoppingCartExistsError as e:
+            print(e)
 
-    def read(self) -> ShoppingCart:
+    def read(self) -> Optional[ShoppingCart]:
         try:
             with open(self.filepath, "r") as file:
                 cart_data = json.load(file)
 
             cart = ShoppingCart()
-            cart.total_price = cart_data["total_price"]
+            cart.total_price = cart_data.get("total_price", 0)
 
-            for item_data in cart_data["items"]:
+            for item_data in cart_data.get("items", []):
                 book = Book(item_data["title"], item_data["author"], item_data["price"], item_data["quantity"])
                 cart.add_item(book, item_data["quantity"])
 

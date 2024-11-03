@@ -1,4 +1,3 @@
-# Book.py
 from typing import Optional
 from Author import Author
 

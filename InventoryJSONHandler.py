@@ -3,6 +3,11 @@ from typing import Optional
 from Inventory import Inventory
 from Book import Book
 
+class BookExistsError(Exception):
+    pass
+
+class BookNotFoundError(Exception):
+    pass
 
 class InventoryJSONHandler:
     def __init__(self, filepath: str):
@@ -22,9 +27,11 @@ class InventoryJSONHandler:
         except (FileNotFoundError, json.JSONDecodeError):
             data = {"books": []}
 
+        if any(b["title"] == book.title for b in data["books"]):
+            raise BookExistsError(f"Book '{book.title}' already exists.")
+
         data["books"].append(book_data)
-        with open(self.filepath, "w") as file:
-            json.dump(data, file, indent=4)
+        self.write_inventory(data)
 
     def read(self) -> Inventory:
         inventory = Inventory()
@@ -41,33 +48,28 @@ class InventoryJSONHandler:
 
     def update(self, book: Book):
         try:
-            inventory = self.read()
-            for idx, inv_book in enumerate(inventory.books):
-                if inv_book.title == book.title:
-                    inventory.books[idx] = book
-                    break
-            self.write_inventory(inventory)
+            data = self.read().books
+            for b in data:
+                if b.title == book.title:
+                    b.author = book.author
+                    b.price = book.price
+                    b.quantity = book.quantity
+                    self.write_inventory(data)
+                    return
+            raise BookNotFoundError(f"Book '{book.title}' not found for update.")
         except Exception as e:
             print(f"Error updating JSON: {e}")
 
     def delete(self, title: str):
         try:
-            inventory = self.read()
-            inventory.remove_book(title)
-            self.write_inventory(inventory)
+            data = self.read().books
+            if not any(b.title == title for b in data):
+                raise BookNotFoundError(f"Book '{title}' not found for deletion.")
+            data = [b for b in data if b.title != title]
+            self.write_inventory(data)
         except Exception as e:
             print(f"Error deleting JSON: {e}")
 
-    def write_inventory(self, inventory: Inventory):
-        data = {"books": []}
-        for book in inventory.books:
-            book_data = {
-                "title": book.title,
-                "author": book.author,
-                "price": book.price,
-                "quantity": book.quantity
-            }
-            data["books"].append(book_data)
-
+    def write_inventory(self, data):
         with open(self.filepath, "w") as file:
-            json.dump(data, file, indent=4)
+            json.dump({"books": data}, file, indent=4)

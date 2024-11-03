@@ -3,7 +3,6 @@ from typing import Optional
 from Inventory import Inventory
 from Book import Book
 
-
 class InventoryXMLHandler:
     def __init__(self, filepath: str):
         self.filepath = filepath

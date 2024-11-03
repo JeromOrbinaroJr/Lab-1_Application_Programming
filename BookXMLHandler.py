@@ -1,6 +1,5 @@
 import xml.etree.ElementTree as ET
 from typing import Optional
-
 from Author import Author
 from Book import Book
 
@@ -51,7 +50,3 @@ class BookXMLHandler:
                 tree.write(self.filepath)
                 return True
         return False
-
-
-
-

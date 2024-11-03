@@ -2,7 +2,6 @@ from typing import List
 from Book import Book
 from Customer import Customer
 
-
 class Order:
     def __init__(self, order_id: str, customer: Customer, status: str = "Pending"):
         try:

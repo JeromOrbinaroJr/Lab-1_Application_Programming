@@ -7,7 +7,6 @@ from Customer import Customer
 class OrderJSONHandler:
     def __init__(self, filepath: str):
         self.filepath = filepath
-
     def create(self, order: Order):
         order_data = {
             "order_id": order.order_id,

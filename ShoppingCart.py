@@ -1,7 +1,6 @@
 from typing import List, Dict
 from Book import Book
 
-
 class ShoppingCart:
     def __init__(self):
         self.items: Dict[Book, int] = {}

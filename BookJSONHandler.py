@@ -1,6 +1,5 @@
 import json
 from typing import Optional
-
 from Author import Author
 from Book import Book
 

@@ -3,7 +3,6 @@ from typing import Optional
 from Customer import Customer
 from Order import Order
 
-
 class CustomerXMLHandler:
     def __init__(self, filepath: str):
         self.filepath = filepath

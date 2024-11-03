@@ -1,5 +1,10 @@
-from typing import List
-from Book import Book
+from typing import List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from Book import Book
+
+class BookAlreadyAdded(Exception):
+    pass
 
 class Author:
     def __init__(self, name: str, birthdate: str):
@@ -8,23 +13,18 @@ class Author:
 
         self.name = name
         self.birthdate = birthdate
-        self.books: List[Book] = []
+        self.books: List["Book"] = []
 
-    def add_book(self, book: Book):
+    def add_book(self, book: "Book"):
         try:
-            if not isinstance(book, Book):
-                raise TypeError("Expected an instance of Book.")
-
-            if book in self.books:
-                raise ValueError(f"The book '{book.title}' is already associated with {self.name}.")
-
-            self.books.append(book)
-            book.author = self
-
-        except TypeError as te:
-            print(f"TypeError: {te}")
-        except ValueError as ve:
-            print(f"ValueError: {ve}")
+            if book not in self.books:
+                self.books.append(book)
+                book.author = self
+            else:
+                raise BookAlreadyAdded(f"{book} already added to the author: {self.name}.")
+        except BookAlreadyAdded as e:
+            print(e)
+            return False
 
     def __str__(self):
         book_titles = [book.title for book in self.books]

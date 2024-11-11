@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46974ee4-c5b2-4a2b-99ee-97745b46e3ad" name="Changes" comment="end of modification Publisher">
-      <change beforePath="$PROJECT_DIR$/ShoppingCartJSONHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartJSONHandler.py" afterDir="false" />
+    <list default="true" id="46974ee4-c5b2-4a2b-99ee-97745b46e3ad" name="Changes" comment="end of modification ShoppingCart">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bookstore.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bookstore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Order.py" beforeDir="false" afterPath="$PROJECT_DIR$/Order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,16 +26,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.AuthorJSONHandler.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/germa/PycharmProjects/Lab#1"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.AuthorJSONHandler.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/germa/PycharmProjects/Lab#1&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -105,8 +108,27 @@
       <option name="project" value="LOCAL" />
       <updated>1730626498881</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="end of modification ShoppingCart">
+      <option name="closed" value="true" />
+      <created>1730626812814</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730626812814</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="end of modification Author" />
@@ -116,6 +138,7 @@
     <MESSAGE value="end of modification Inventory" />
     <MESSAGE value="end of modification Order" />
     <MESSAGE value="end of modification Publisher" />
-    <option name="LAST_COMMIT_MESSAGE" value="end of modification Publisher" />
+    <MESSAGE value="end of modification ShoppingCart" />
+    <option name="LAST_COMMIT_MESSAGE" value="end of modification ShoppingCart" />
   </component>
 </project>

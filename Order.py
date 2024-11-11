@@ -1,6 +1,7 @@
 from typing import List
 from Book import Book
 from Customer import Customer
+from Payment import Payment
 
 class Order:
     def __init__(self, order_id: str, customer: Customer, status: str = "Pending"):
@@ -16,8 +17,23 @@ class Order:
             self.books: List[Book] = []
             self.total_amount = 0.0
             self.status = status
+            self.payment: Payment = None
         except (AssertionError, ValueError) as e:
             print(f"Error initializing order: {e}")
+
+    def add_payment(self, payment: Payment):
+        if not isinstance(payment, Payment):
+            print("Expected an instance of Payment.")
+            return
+        self.payment = payment
+        self.update_status_based_on_payment()
+
+    def update_status_based_on_payment(self):
+        if self.payment:
+            if self.payment.status == "Completed":
+                self.status = "Shipped"
+            elif self.payment.status == "Failed":
+                self.status = "Canceled"
 
     def add_book(self, book: Book, quantity: int = 1):
         try:
